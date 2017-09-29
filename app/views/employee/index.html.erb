@@ -1,18 +1,18 @@
 <h1>Employees</h1>
 
 <table>
-	<tr>
-		<th>Employee Name</th>
-	</tr>
-	<tr>
-	<% @employees.each do |e| %>
-		<tr>
-			<td>
-				<%= link_to "#{e.first_name} #{e.last_name}", employee_path(e) %>		
-			</td>
-		</tr>
-	<% end %>
-	</tr>
+  <tr>
+    <th>Employee Name</th>
+  </tr>
+  <tr>
+    <% @employees.each do |e| %>
+    <tr>
+      <td>
+        <%= link_to "#{e.first_name} #{e.last_name}", employee_path(e) %>   
+      </td>
+    </tr>
+    <% end %>
+  </tr>
 </table>
 
 <%= link_to "Add New Employee", new_employee_path %>

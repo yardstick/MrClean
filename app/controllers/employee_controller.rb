@@ -4,7 +4,7 @@ class EmployeeController < ApplicationController
   before_action :get_employee, only:[:show, :edit, :update, :destroy]
 
   def get_employee
-  	@employee = Employee.find(params[:id])
+    @employee = Employee.find(params[:id])
   end
 
   def index
@@ -19,16 +19,16 @@ class EmployeeController < ApplicationController
   end
 
   def update
-  	@employee.update_attributes(employee_params(params))
+    @employee.update_attributes(employee_params(params))
 
-  	redirect_to @employee
+    redirect_to @employee
   end
 
   def destroy
-  	@employee.destroy
-  	flash[:success] = "Employee Deleted"
+    @employee.destroy
+    flash[:success] = "Employee Deleted"
 
-  	redirect_to employee_index_path
+    redirect_to employee_index_path
   end
 
   private

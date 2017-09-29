@@ -3,17 +3,17 @@
 <table>
 
 <% @weeks.each do |w| %>
-	<tr>
-		<td>
-			<%= "#{w.starts_at.strftime('%B %d, %Y')}" %>
-		</td>
-		<% @assignments.where(week: w).each do |a| %>
-			<td>
-				<%= "#{a.employee.first_name}" %>
-			</td>
-		<% end %>
-	</tr>
-<% end %>	
+  <tr>
+    <td>
+      <%= "#{w.starts_at.strftime('%B %d, %Y')}" %>
+    </td>
+    <% @assignments.where(week: w).each do |a| %>
+      <td>
+        <%= "#{a.employee.first_name}" %>
+      </td>
+    <% end %>
+  </tr>
+<% end %> 
 
 </table>
 
