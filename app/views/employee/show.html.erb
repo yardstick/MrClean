@@ -1,7 +1,7 @@
 <h1><%= "#{@employee.first_name} #{@employee.last_name}" %></h1>
 
-<p>Email: <%= @employee.email %></p>
-<p>Phone: <%= @employee.phone %></p>
+<div>Email: <%= @employee.email %></div>
+<div>Phone: <%= @employee.phone %></div>
 
 
 <%= link_to "Edit Information", edit_employee_path(@employee) %>

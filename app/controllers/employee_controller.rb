@@ -8,31 +8,18 @@ class EmployeeController < ApplicationController
   end
 
   def index
-
-  end
-
-  def show
-
-  end
-
-  def new
-  	
+    @employees = Employee.order(:first_name)  
   end
 
   def create
-    @employee = Employee.new(params.require(:employee).permit(:first_name,:last_name,:email,:phone))
+    @employee = Employee.new(employee_params(params))
     @employee.save
 
     redirect_to employee_path(@employee)
   end
 
-  def edit
-
-  end
-
   def update
-  	#@employee = Employee.find(params[:id])
-  	@employee.update_attributes(params.require(:employee).permit(:first_name,:last_name,:email,:phone))
+  	@employee.update_attributes(employee_params(params))
 
   	redirect_to @employee
   end
@@ -43,4 +30,10 @@ class EmployeeController < ApplicationController
 
   	redirect_to employee_index_path
   end
+
+  private
+
+    def employee_params(params)
+      params.require(:employee).permit(:first_name, :last_name, :email, :phone)
+    end 
 end

@@ -5,8 +5,7 @@
 		<th>Employee Name</th>
 	</tr>
 	<tr>
-	<% emp = Employee.all.order(:first_name) %>
-	<% emp.each do |e| %>
+	<% @employees.each do |e| %>
 		<tr>
 			<td>
 				<%= link_to "#{e.first_name} #{e.last_name}", employee_path(e) %>		

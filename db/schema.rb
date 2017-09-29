@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170920194711) do
+ActiveRecord::Schema.define(version: 20170925220139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: :cascade do |t|
+    t.bigint "week_id", null: false
+    t.bigint "employee_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_assignments_on_employee_id"
+    t.index ["week_id", "employee_id"], name: "index_assignments_on_week_id_and_employee_id"
+    t.index ["week_id"], name: "index_assignments_on_week_id"
+  end
 
   create_table "employees", force: :cascade do |t|
     t.string "first_name", null: false
@@ -24,16 +34,10 @@ ActiveRecord::Schema.define(version: 20170920194711) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "schedules", force: :cascade do |t|
-    t.integer "start_year"
-    t.integer "start_month"
-    t.integer "start_day"
-    t.bigint "employee1_id"
-    t.bigint "employee2_id"
+  create_table "weeks", force: :cascade do |t|
+    t.datetime "starts_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["employee1_id"], name: "index_schedules_on_employee1_id"
-    t.index ["employee2_id"], name: "index_schedules_on_employee2_id"
   end
 
 end
