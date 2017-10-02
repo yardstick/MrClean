@@ -5,10 +5,10 @@
     <th>Employee Name</th>
   </tr>
   <tr>
-    <% @employees.each do |e| %>
+    <% @employees.each do |employee| %>
     <tr>
       <td>
-        <%= link_to "#{e.first_name} #{e.last_name}", employee_path(e) %>   
+        <%= link_to employee_full_name(employee), employee_path(employee) %>   
       </td>
     </tr>
     <% end %>

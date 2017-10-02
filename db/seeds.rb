@@ -16,11 +16,11 @@ if Rails.env.development?
   Employee.create(first_name: "Eric", last_name: "Ericson", email: "Eric@mail.com", phone: "1-800-555-5555")
 
   #fill week table with 5 week starting Sept 4, 2017
-  @dt = DateTime.new(2017,9,4).beginning_of_week
+  @current_time = DateTime.new(2017,9,4).beginning_of_week
   
-  for i in 0..10
-    Week.create(starts_at: @dt)
-    @dt = @dt.next_week.beginning_of_week 
+  20.times do |i|
+    Week.create(starts_at: @current_time)
+    @current_time = @current_time.next_week.beginning_of_week 
   end
 
   #assigns two employees to a week in numerical order

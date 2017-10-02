@@ -1,19 +1,30 @@
 <h1>Kitchen Schedule</h1>
 
 <table>
+<tr>
+  <th>
+    Dates
+  </th>
+  <th>
+    Employees
+  </th>
+</tr>
 
-<% @weeks.each do |w| %>
+<% @weeks.each do |week| %>
   <tr>
     <td>
-      <%= "#{w.starts_at.strftime('%B %d, %Y')}" %>
+      <%= print_date(week) %>
     </td>
-    <% @assignments.where(week: w).each do |a| %>
+    <% week.employees.each do |employee| %>
       <td>
-        <%= "#{a.employee.first_name}" %>
+        <%= "#{employee.first_name}" %>
       </td>
     <% end %>
+      <td>
+        <%= link_to "Edit Week", edit_assignment_path(week) %>
+      </td>
   </tr>
-<% end %> 
+<% end %>
 
 </table>
 

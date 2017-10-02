@@ -1,4 +1,6 @@
 class EmployeeController < ApplicationController
+  helper :employee
+
   protect_from_forgery with: :exception
 
   before_action :get_employee, only:[:show, :edit, :update, :destroy]
@@ -28,7 +30,7 @@ class EmployeeController < ApplicationController
     @employee.destroy
     flash[:success] = "Employee Deleted"
 
-    redirect_to employee_index_path
+    redirect_to(action: :index)
   end
 
   private

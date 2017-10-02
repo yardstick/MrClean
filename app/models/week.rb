@@ -1,6 +1,8 @@
 class Week < ActiveRecord::Base
-  validates_presence_of :starts_at
-  validates_uniqueness_of :starts_at
+  validates :starts_at, presence: true, uniqueness: true
 
   has_many :assignments
+  has_many :employees, through: :assignments
+
+  scope :upcoming, -> { where('starts_at > ?', Time.zone.now.last_week.end_of_week) }
 end
