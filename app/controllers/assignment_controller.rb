@@ -2,7 +2,6 @@ class AssignmentController < ApplicationController
   helper :timestamp, :employee
   helper_method :employee_to_str
 
-
   protect_from_forgery with: :exception
 
   def index

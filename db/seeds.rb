@@ -14,6 +14,14 @@ if Rails.env.development?
   Employee.create(first_name: "Charlie",last_name: "Chase", email: "Charlie@mail.com", phone: "1-800-555-3333")
   Employee.create(first_name: "Dave", last_name: "Daniels", email: "Dave@mail.com", phone: "1-800-555-4444")
   Employee.create(first_name: "Eric", last_name: "Ericson", email: "Eric@mail.com", phone: "1-800-555-5555")
+  Employee.create(first_name: "Fred", last_name: "Franklin", email: "Frank@mail.com", phone: "1-800-666-6666")
+  Employee.create(first_name: "Greg", last_name: "Andrews", email: "Aaron@mail.com", phone: "1-800-555-1111")
+  Employee.create(first_name: "Henry", last_name: "Bean", email: "Bret@mail.com", phone: "1-800-555-2222")
+  Employee.create(first_name: "Ivan",last_name: "Chase", email: "Charlie@mail.com", phone: "1-800-555-3333")
+  Employee.create(first_name: "Jerry", last_name: "Daniels", email: "Dave@mail.com", phone: "1-800-555-4444")
+  Employee.create(first_name: "Kevin", last_name: "Ericson", email: "Eric@mail.com", phone: "1-800-555-5555")
+  Employee.create(first_name: "Lamar", last_name: "Franklin", email: "Frank@mail.com", phone: "1-800-666-6666")
+  Employee.create(first_name: "Moe", last_name: "Whocares", email: "Moe@mail.com", phone:"1-111-111-1111")
 
   #fill week table with 5 week starting Sept 4, 2017
   @current_time = DateTime.new(2017,9,4).beginning_of_week
@@ -29,13 +37,13 @@ if Rails.env.development?
   Week.all.each do |w|
     Assignment.create(week: w, employee: Employee.find(@emp_id))
     @emp_id += 1
-    if @emp_id > 5
+    if @emp_id > Employee.all.last.id
       @emp_id = 1
     end
 
     Assignment.create(week: w, employee: Employee.find(@emp_id))
     @emp_id += 1
-    if @emp_id > 5
+    if @emp_id > Employee.all.last.id
       @emp_id = 1
     end
   end

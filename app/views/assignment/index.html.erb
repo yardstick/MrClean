@@ -15,7 +15,7 @@
     <td>
       <%= print_date(week) %>
     </td>
-    <% week.employees.each do |employee| %>
+    <% week.employees.order(:first_name).each do |employee| %>
       <td>
         <%= "#{employee.first_name}" %>
       </td>
@@ -25,6 +25,9 @@
       </td>
   </tr>
 <% end %>
+<tr>
+  <%= link_to "Add Week", new_week_path %>
+</tr>
 
 </table>
 
