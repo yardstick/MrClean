@@ -8,7 +8,7 @@ class WeekController < ApplicationController
 
     week = Week.create(starts_at: new_week)
 
-    GenerateNewWeekAssignments.new(week)
+    GenerateNewWeekAssignments.new(week).call
 
     redirect_to assignment_index_path
   end
