@@ -1,8 +1,6 @@
 class WeekController < ApplicationController
   protect_from_forgery with: :exception
 
- # include GenerateNewWeekAssignments
-
   def new
     last_week = Week.order(:starts_at).last #the last week added to the db
 
