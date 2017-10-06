@@ -1,0 +1,17 @@
+<h1>Editing Week</h1>
+
+<% @employee_arr = Array.new %>
+<% Employee.all.each do |employee| %>
+  <% @employee_arr.push([employee_full_name(employee), employee.id]) %>
+<% end %>
+
+<%= print_date(@week) %>
+
+<% @assignments.each do |assignment| %>
+
+  <%= form_for(assignment) do |form| %>
+    <%= form.select :employee_id, options_for_select(@employee_arr, form.object.employee_id)%>
+    <%= form.hidden_field :week_id, :value => @week.id %>
+    <%= form.submit "Save Changes" %>
+  <% end %>
+<% end %>

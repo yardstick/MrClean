@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :employee
+  resources :assignment
+  resources :week
+
+  post '/employee/new', to: 'employee#create'
+  root to: 'assignment#index'
+
+
 end

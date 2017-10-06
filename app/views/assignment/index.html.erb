@@ -1,0 +1,34 @@
+<h1>Kitchen Schedule</h1>
+
+<table>
+<tr>
+  <th>
+    Dates
+  </th>
+  <th>
+    Employees
+  </th>
+</tr>
+
+<% @weeks.each do |week| %>
+  <tr>
+    <td>
+      <%= print_date(week) %>
+    </td>
+    <% week.employees.order(:first_name).each do |employee| %>
+      <td>
+        <%= "#{employee.first_name}" %>
+      </td>
+    <% end %>
+      <td>
+        <%= link_to "Edit Week", edit_assignment_path(week) %>
+      </td>
+  </tr>
+<% end %>
+<tr>
+  <%= link_to "Add Week", new_week_path %>
+</tr>
+
+</table>
+
+
