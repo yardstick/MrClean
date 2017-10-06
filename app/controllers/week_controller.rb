@@ -1,7 +1,7 @@
 class WeekController < ApplicationController
   protect_from_forgery with: :exception
 
-  include AssignmentGenerationHelper
+ # include GenerateNewWeekAssignments
 
   def new
     last_week = Week.order(:starts_at).last #the last week added to the db
@@ -10,7 +10,7 @@ class WeekController < ApplicationController
 
     week = Week.create(starts_at: new_week)
 
-    generate_new_week_assignments(week)
+    GenerateNewWeekAssignments.new(week)
 
     redirect_to assignment_index_path
   end

@@ -23,8 +23,8 @@ class AssignmentController < ApplicationController
 
   private
 
-  def assignment_params(params)
-    params.require(:assignment).permit(:employee_id,:week_id)
-  end
+    def assignment_params(params)
+      params.require(:assignment).permit(:employee_id,:week_id)
+    end
 
 end
