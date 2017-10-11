@@ -1,10 +1,5 @@
 <h1>Editing Week</h1>
 
-<% @employee_arr = Array.new %>
-<% Employee.all.each do |employee| %>
-  <% @employee_arr.push([employee_full_name(employee), employee.id]) %>
-<% end %>
-
 <%= print_date(@week) %>
 
 <% @assignments.each do |assignment| %>
@@ -15,3 +10,8 @@
     <%= form.submit "Save Changes" %>
   <% end %>
 <% end %>
+
+
+<% if @assignments.count < 2 %>
+  <div><%= link_to "Add assignment", new_assignment_path(:week => @week) %></div>
+<%end%>

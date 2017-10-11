@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :assignment
   resources :week
 
-  post '/employee/new', to: 'employee#create'
+  post '/employee/new',    to: 'employee#create'
+  post '/assignment/new',  to: 'assignment#create'
   root to: 'assignment#index'
 
 

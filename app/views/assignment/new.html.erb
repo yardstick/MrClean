@@ -1,0 +1,9 @@
+<h1>Creating New Assignment</h1>
+<h3><%= print_date(@week) %></h3>
+
+
+<%= form_for :assignment do |form| %>
+  <%= form.select :employee_id, options_for_select(@employee_arr), :include_blank => true, required: true %>
+  <%= form.hidden_field :week_id, :value => @week.id %>
+  <%= form.submit "Create Assignment" %>
+<% end %>

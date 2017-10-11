@@ -27,6 +27,16 @@ class EmployeeController < ApplicationController
   end
 
   def destroy
+
+    current_week_id = Week.upcoming.first.id
+    assignments = Assignment.where('week_id >= ?', current_week_id).where( employee_id: @employee.id)
+    #gets all assignments including and beyond the current week which will be deleted
+
+    assignments.each do |assignment|
+      assignment.destroy
+    end
+
+
     @employee.destroy
     flash[:success] = "Employee Deleted"
 
