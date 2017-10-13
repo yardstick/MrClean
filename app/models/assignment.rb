@@ -5,5 +5,5 @@ class Assignment < ActiveRecord::Base
   belongs_to :week
   belongs_to :employee
 
-  scope :upcoming, -> { where('week_id > ?', Week.upcoming.first.id) }
+  scope :upcoming, -> { where('week_id >= ?', Week.upcoming.first.id) }
 end
