@@ -16,14 +16,12 @@ class GenerateNewWeekAssignments
     def generate_last_assignment_list
       @last_assignment_list = []
 
-      Employee.all.each do |employee|
-        last_employee_assignment = Assignment.where(employee_id: employee.id).order(:week_id).last
+      Employee.find_each do |employee|
+        last_employee_assignment = 
+          Assignment.where(employee_id: employee.id).order(:week_id).last ||
+          Assignment.new(week: @week, employee: employee, created_at: Time.zone.now)
 
-        if last_employee_assignment.present?
-          @last_assignment_list.push(last_employee_assignment)
-        else
-          #new employee who haven't been assigned yet dealt with here
-        end
+        @last_assignment_list.push(last_employee_assignment)
       end
     
       @last_assignment_list = @last_assignment_list.sort_by {|assignment| [assignment.week.created_at, assignment.employee.id]}

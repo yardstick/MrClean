@@ -25,6 +25,7 @@ if Rails.env.development?
 
   #fill week table with 5 week starting Sept 4, 2017
   @current_time = DateTime.new(2017,9,4).beginning_of_week
+
   
   20.times do |i|
     Week.create(starts_at: @current_time)
@@ -34,7 +35,8 @@ if Rails.env.development?
   #assigns two employees to a week in numerical order
   @emp_id = 1
 
-  Week.all.each do |w|
+
+  Week.find_each do |w|
     Assignment.create(week: w, employee: Employee.find(@emp_id))
     @emp_id += 1
     if @emp_id > Employee.all.last.id

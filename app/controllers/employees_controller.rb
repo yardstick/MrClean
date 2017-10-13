@@ -1,4 +1,4 @@
-class EmployeeController < ApplicationController
+class EmployeesController < ApplicationController
   helper :employee
 
   protect_from_forgery with: :exception
@@ -11,6 +11,10 @@ class EmployeeController < ApplicationController
 
   def index
     @employees = Employee.order(:first_name)  
+  end
+
+  def new
+    @employee = Employee.new
   end
 
   def create
@@ -27,6 +31,14 @@ class EmployeeController < ApplicationController
   end
 
   def destroy
+    assignments = Assignment.upcoming.where( employee_id: @employee.id)
+    #gets all assignments including and beyond the current week which will be deleted
+
+    assignments.each do |assignment|
+      assignment.destroy
+    end
+
+
     @employee.destroy
     flash[:success] = "Employee Deleted"
 

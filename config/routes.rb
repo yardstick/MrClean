@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :employee
-  resources :assignment
-  resources :week
+  resources :employees
+  resources :assignments
+  resources :weeks
 
-  post '/employee/new', to: 'employee#create'
-  root to: 'assignment#index'
+  root to: 'assignments#index'
 
 
 end
