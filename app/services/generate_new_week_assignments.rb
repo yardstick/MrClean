@@ -17,19 +17,11 @@ class GenerateNewWeekAssignments
       @last_assignment_list = []
 
       Employee.find_each do |employee|
-        last_employee_assignment = Assignment.where(employee_id: employee.id).order(:week_id).last
+        last_employee_assignment = 
+          Assignment.where(employee_id: employee.id).order(:week_id).last ||
+          Assignment.new(week: @week, employee: employee, created_at: Time.zone.now)
 
-        if last_employee_assignment.present?
-          @last_assignment_list.push(last_employee_assignment)
-        else
-          temp_assignment = Assignment.create(week: @week, employee: employee)
-
-          last_employee_assignment = Assignment.where(employee_id: employee.id).order(:week_id).last
-
-          @last_assignment_list.push(last_employee_assignment)
-
-          temp_assignment.destroy
-        end
+        @last_assignment_list.push(last_employee_assignment)
       end
     
       @last_assignment_list = @last_assignment_list.sort_by {|assignment| [assignment.week.created_at, assignment.employee.id]}

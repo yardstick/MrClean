@@ -1,0 +1,5 @@
+<%= form_for(assignment) do |form| %>
+  <%= form.select :employee_id,  @employees.map { |employee| [employee_full_name(employee), employee.id] } %>
+  <%= form.hidden_field :week_id, value: @week.id %>
+  <%= form.submit "Save Changes" %>
+<% end %>

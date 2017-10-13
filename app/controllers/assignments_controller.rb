@@ -1,11 +1,11 @@
-class AssignmentController < ApplicationController
+class AssignmentsController < ApplicationController
   helper :timestamp, :employee
 
   include EmployeeHelper
 
   protect_from_forgery with: :exception
 
-  before_action :create_employee_array, only:[:edit, :new]
+  before_action :load_employees, only:[:edit, :new]
 
   def index
     @weeks = Week.upcoming
@@ -13,6 +13,8 @@ class AssignmentController < ApplicationController
 
   def new
     @week = Week.find(params[:week])
+
+    @assignment = Assignment.new
   end
 
   def create
@@ -41,11 +43,8 @@ class AssignmentController < ApplicationController
       params.require(:assignment).permit(:employee_id,:week_id)
     end
 
-    def create_employee_array
-      @employee_arr = Array.new 
-      Employee.all.each do |employee|
-        @employee_arr.push([employee_full_name(employee), employee.id])
-      end
+    def load_employees
+      @employees = Employee.all
     end
 
 end

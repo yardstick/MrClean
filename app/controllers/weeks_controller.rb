@@ -1,4 +1,4 @@
-class WeekController < ApplicationController
+class WeeksController < ApplicationController
   protect_from_forgery with: :exception
 
   def new
@@ -15,7 +15,7 @@ class WeekController < ApplicationController
 
     GenerateNewWeekAssignments.new(week).call
 
-    redirect_to assignment_index_path
+    redirect_to assignments_path
   end
 
 end

@@ -1,0 +1,7 @@
+<h1>Creating New Assignment</h1>
+<h3><%= print_date(@week) %></h3>
+
+
+<%= render('form', assignment: @assignment) %>
+<br>
+<%= link_to "Cancel", edit_assignment_path(@week) %>

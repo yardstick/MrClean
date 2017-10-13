@@ -15,11 +15,27 @@
     <td>
       <%= print_date(week) %>
     </td>
-    <% week.employees.order(:first_name).each do |employee| %>
+    
+    <% week_assignments = week.employees.order(:first_name) %>
+    <% week_assignments.each do |employee| %>
       <td>
         <%= "#{employee.first_name}" %>
       </td>
     <% end %>
+    
+    <% if week_assignments.count == 1 %>
+      <td>
+        <b>EMPTY</b>
+      </td>
+    <% elsif week_assignments.count == 0 %>
+      <td>
+        <b>EMPTY</b>
+      </td>
+      <td>
+        <b>EMPTY</b>
+      </td>
+    <%end%>
+      
       <td>
         <%= link_to "Edit Week", edit_assignment_path(week) %>
       </td>
