@@ -34,7 +34,7 @@ class AssignmentsController < ApplicationController
 
     @assignment.update_attributes(assignment_params(params))
 
-    redirect_to assignment_index_path
+    redirect_to assignments_path
   end
 
   private
