@@ -18,7 +18,7 @@ class GenerateNewWeekAssignments
 
       Employee.find_each do |employee|
         last_employee_assignment = 
-          Assignment.where(employee_id: employee.id).order(:week_id).last ||
+          Assignment.where(employee_id: employee.id).order(:week_id, :id).last ||
           Assignment.new(week: @week, employee: employee, created_at: Time.zone.now)
 
         @last_assignment_list.push(last_employee_assignment)
