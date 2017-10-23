@@ -24,7 +24,7 @@ class GenerateNewWeekAssignments
         @last_assignment_list.push(last_employee_assignment)
       end
     
-      @last_assignment_list = @last_assignment_list.sort_by {|assignment| [assignment.week.created_at, assignment.employee.id]}
+      @last_assignment_list = @last_assignment_list.sort_by {|assignment| [assignment.week.created_at, assignment.id , assignment.employee.id]}
 
     end
 
