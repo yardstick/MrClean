@@ -9,8 +9,21 @@
   </head>
 
   <body>
-    <%= link_to "Schedule", assignments_path %>
-    <%= link_to "Employees", employees_path %>
+    
+    
+    <% if user_signed_in? %>
+      <%= link_to "Logout", destroy_user_session_path %>
+    <%else%>
+      <%= link_to "Login", new_user_session_path %>
+    <%end%>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    
+    
+    <% if user_signed_in? %>
+      <%= link_to "Schedule", assignments_path %>
+      <%= link_to "Employees", employees_path %>
+    <% end %>
 
     <%= yield %>
 

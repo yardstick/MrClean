@@ -5,6 +5,7 @@ class AssignmentsController < ApplicationController
 
   protect_from_forgery with: :exception
 
+  before_action :authenticate_user!, only:[:new, :create, :edit, :update]
   before_action :load_employees, only:[:edit, :new]
 
   def index
@@ -13,6 +14,10 @@ class AssignmentsController < ApplicationController
 
   def new
     @week = Week.find(params[:week])
+
+    if Assignment.where(week: @week).count >= 2
+      redirect_to edit_assignment_path(@week)
+    end
 
     @assignment = Assignment.new
   end
