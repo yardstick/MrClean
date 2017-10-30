@@ -7,6 +7,6 @@
 <% end %>
 
 
-<% if @assignments.count < 2 %>
+<% if @assignments.count < ASSIGNMENTS_PER_WEEK %>
   <div><%= link_to "Add assignment", new_assignment_path(week: @week) %></div>
 <%end%>

@@ -6,4 +6,7 @@ class Assignment < ActiveRecord::Base
   belongs_to :employee
 
   scope :upcoming, -> { where('week_id >= ?', Week.upcoming.first.id) }
+
 end
+
+ASSIGNMENTS_PER_WEEK = 2

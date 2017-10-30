@@ -37,7 +37,7 @@
     <%end%>
       
       <td>
-        <% if can_edit_weeks %>
+        <% if can_edit_weeks? %>
           <%= link_to "Edit Week", edit_assignment_path(week) %>
         <% end %>
       </td>
@@ -45,7 +45,7 @@
 <% end %>
 <tr>
   <td>
-    <% if can_add_weeks %>
+    <% if can_create_weeks? %>
       <%= link_to "Add Week", new_week_path %>
     <% end %>
   <td>
