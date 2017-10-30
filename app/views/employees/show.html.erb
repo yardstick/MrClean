@@ -3,6 +3,12 @@
 <div>Email: <%= @employee.email %></div>
 <div>Phone: <%= @employee.phone %></div>
 
+<br>
+
+<div>Office: <%= @employee.office.office_name %></div>
+
+<br>
+
 
 <%= link_to "Edit Information", edit_employee_path(@employee) %>
 <%= link_to "Delete Employee", @employee, method: :delete, data: {confirm: "You Sure?"} %>
