@@ -15,7 +15,7 @@ class AssignmentsController < SecureController
   def new
     @week = Week.find(params[:week])
 
-    if Assignment.where(week: @week).count >= ASSIGNMENTS_PER_WEEK
+    if @week.fully_assigned?
       redirect_to edit_assignment_path(@week)
     end
 

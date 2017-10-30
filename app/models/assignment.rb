@@ -9,4 +9,3 @@ class Assignment < ActiveRecord::Base
 
 end
 
-ASSIGNMENTS_PER_WEEK = 2

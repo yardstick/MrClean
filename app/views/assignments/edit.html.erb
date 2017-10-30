@@ -7,6 +7,6 @@
 <% end %>
 
 
-<% if @assignments.count < ASSIGNMENTS_PER_WEEK %>
+<% if !@week.fully_assigned? %>
   <div><%= link_to "Add assignment", new_assignment_path(week: @week) %></div>
 <%end%>
