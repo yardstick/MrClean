@@ -1,11 +1,12 @@
 class AssignmentsController < SecureController
-  helper :timestamp, :employee
+  helper :timestamp, :employee, :office_assignment
 
   include EmployeeHelper
 
   protect_from_forgery with: :exception
 
   skip_before_action :authenticate_user!, only:[:index]
+  before_action :get_office
   before_action :load_employees, only:[:edit, :new]
 
   def index
@@ -31,7 +32,8 @@ class AssignmentsController < SecureController
 
   def edit
     @week = Week.find(params[:id])
-    @assignments = Assignment.where(week: @week)
+    @office = Office.find(params[:office_id])
+    @assignments = Assignment.where(week: @week, office: @office)
   end
 
   def update
@@ -50,6 +52,14 @@ class AssignmentsController < SecureController
 
     def load_employees
       @employees = Employee.all
+    end
+
+    def get_office
+      if params[:office_id].present?
+        @office = Office.find(params[:office_id])
+      else
+        @office = Office.first
+    end
     end
 
 end

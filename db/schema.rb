@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 20171030200258) do
   create_table "assignments", force: :cascade do |t|
     t.bigint "week_id", null: false
     t.bigint "employee_id", null: false
+    t.bigint "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_assignments_on_employee_id"
+    t.index ["office_id"], name: "index_assignments_on_office_id"
     t.index ["week_id", "employee_id"], name: "index_assignments_on_week_id_and_employee_id"
     t.index ["week_id"], name: "index_assignments_on_week_id"
   end
