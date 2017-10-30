@@ -11,7 +11,7 @@
   <body>
     
     
-    <% if user_signed_in? %>
+    <% if is_logged_in %>
       <%= link_to "Logout", destroy_user_session_path %>
     <%else%>
       <%= link_to "Login", new_user_session_path %>
@@ -19,8 +19,9 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     
+    <hr>
     
-    <% if user_signed_in? %>
+    <% if can_access_employee_information_page %>
       <%= link_to "Schedule", assignments_path %>
       <%= link_to "Employees", employees_path %>
     <% end %>

@@ -37,7 +37,7 @@
     <%end%>
       
       <td>
-        <% if user_signed_in? %>
+        <% if can_edit_weeks %>
           <%= link_to "Edit Week", edit_assignment_path(week) %>
         <% end %>
       </td>
@@ -45,7 +45,7 @@
 <% end %>
 <tr>
   <td>
-    <% if user_signed_in? %>
+    <% if can_add_weeks %>
       <%= link_to "Add Week", new_week_path %>
     <% end %>
   <td>
