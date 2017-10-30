@@ -1,7 +1,5 @@
-class WeeksController < ApplicationController
+class WeeksController < SecureController
   protect_from_forgery with: :exception
-
-  before_action :authenticate_user!
 
   def new
     last_week = Week.order(:starts_at).last #the last week added to the db

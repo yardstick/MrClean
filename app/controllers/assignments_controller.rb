@@ -1,11 +1,11 @@
-class AssignmentsController < ApplicationController
+class AssignmentsController < SecureController
   helper :timestamp, :employee
 
   include EmployeeHelper
 
   protect_from_forgery with: :exception
 
-  before_action :authenticate_user!, only:[:new, :create, :edit, :update]
+  skip_before_action :authenticate_user!, only:[:index]
   before_action :load_employees, only:[:edit, :new]
 
   def index
