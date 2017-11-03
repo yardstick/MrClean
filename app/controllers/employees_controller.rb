@@ -1,4 +1,4 @@
-class EmployeesController < ApplicationController
+class EmployeesController < SecureController
   helper :employee
 
   protect_from_forgery with: :exception

@@ -1,10 +1,11 @@
-class AssignmentsController < ApplicationController
+class AssignmentsController < SecureController
   helper :timestamp, :employee
 
   include EmployeeHelper
 
   protect_from_forgery with: :exception
 
+  skip_before_action :authenticate_user!, only:[:index]
   before_action :load_employees, only:[:edit, :new]
 
   def index
@@ -13,6 +14,10 @@ class AssignmentsController < ApplicationController
 
   def new
     @week = Week.find(params[:week])
+
+    if @week.fully_assigned?
+      redirect_to edit_assignment_path(@week)
+    end
 
     @assignment = Assignment.new
   end
