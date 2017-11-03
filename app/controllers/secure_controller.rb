@@ -1,5 +1,5 @@
 class SecureController < ApplicationController
-  helper :authentication
+  helper :authorization
 
   before_action :authenticate_user!
 end

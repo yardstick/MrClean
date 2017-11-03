@@ -8,4 +8,6 @@ class Assignment < ActiveRecord::Base
   belongs_to :office
 
   scope :upcoming, -> { where('week_id >= ?', Week.upcoming.first.id) }
+
 end
+
