@@ -6,18 +6,18 @@ class AssignmentsController < SecureController
   protect_from_forgery with: :exception
 
   skip_before_action :authenticate_user!, only:[:index]
-  before_action :get_office
+  before_action :get_current_office, only: [:index, :new, :edit]
   before_action :load_employees, only:[:edit, :new]
 
   def index
-    @weeks = Week.upcoming
+    @weeks = @current_office.weeks.upcoming
   end
 
   def new
     @week = Week.find(params[:week])
 
     if @week.fully_assigned?
-      redirect_to edit_assignment_path(@week)
+      redirect_to edit_office_assignment_path(@current_office,@week)
     end
 
     @assignment = Assignment.new
@@ -26,14 +26,12 @@ class AssignmentsController < SecureController
   def create
     assignment = Assignment.create(assignment_params(params))
 
-    week = Week.find(params[:assignment][:week_id])
-    redirect_to edit_assignment_path(week)
+    redirect_to edit_office_assignment_path(assignment.week.office, assignment.week)
   end
 
   def edit
     @week = Week.find(params[:id])
-    @office = Office.find(params[:office_id])
-    @assignments = Assignment.where(week: @week, office: @office)
+    @assignments = Assignment.where(week: @week)
   end
 
   def update
@@ -41,25 +39,17 @@ class AssignmentsController < SecureController
 
     @assignment.update_attributes(assignment_params(params))
 
-    redirect_to assignments_path
+    redirect_to office_assignments_path(@assignment.week.office)
   end
 
   private
 
     def assignment_params(params)
-      params.require(:assignment).permit(:employee_id,:week_id)
+      params.require(:assignment).permit(:employee_id,:week_id);
     end
 
     def load_employees
-      @employees = Employee.all
-    end
-
-    def get_office
-      if params[:office_id].present?
-        @office = Office.find(params[:office_id])
-      else
-        @office = Office.first
-    end
+      @employees = @current_office.employees
     end
 
 end

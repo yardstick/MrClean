@@ -22,8 +22,8 @@
     <hr>
     
     <% if can_index_employees? %>
-      <%= link_to "Schedule", assignments_path %>
-      <%= link_to "Employees", employees_path %>
+      <%= link_to "Schedule", office_assignments_path(@current_office) %>
+      <%= link_to "Employees", office_employees_path(@current_office) %>
     <% end %>
 
     <%= yield %>

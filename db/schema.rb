@@ -18,11 +18,9 @@ ActiveRecord::Schema.define(version: 20171030200258) do
   create_table "assignments", force: :cascade do |t|
     t.bigint "week_id", null: false
     t.bigint "employee_id", null: false
-    t.bigint "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_assignments_on_employee_id"
-    t.index ["office_id"], name: "index_assignments_on_office_id"
     t.index ["week_id", "employee_id"], name: "index_assignments_on_week_id_and_employee_id"
     t.index ["week_id"], name: "index_assignments_on_week_id"
   end
@@ -43,7 +41,9 @@ ActiveRecord::Schema.define(version: 20171030200258) do
   end
 
   create_table "offices", force: :cascade do |t|
-    t.string "office_name"
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,8 +65,10 @@ ActiveRecord::Schema.define(version: 20171030200258) do
 
   create_table "weeks", force: :cascade do |t|
     t.datetime "starts_at", null: false
+    t.bigint "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["office_id"], name: "index_weeks_on_office_id"
   end
 
 end

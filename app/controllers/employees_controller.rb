@@ -3,40 +3,33 @@ class EmployeesController < SecureController
 
   protect_from_forgery with: :exception
 
+  before_action :get_current_office, only:[:index, :new, :create, :edit, :show]
   before_action :get_employee, only:[:show, :edit, :update, :destroy]
-  before_action :load_offices, only:[:new,:edit]
-
-  def get_employee
-    @employee = Employee.find(params[:id])
-  end
+  before_action :get_offices, only:[:new,:edit]
 
   def index
-    if params[:office_id].present?
-      @office = Office.find(params[:office_id])
-      @office_name = @office.office_name
-      @employees = Employee.where(office: @office)
-    else
-      @employees = Employee.order(:first_name)
-      @office_name = "All"
-    end
+      @employees = Employee.where(office: @current_office).order(:first_name)
   end
 
   def new
-    @employee = Employee.new
-    @office = Office.first
+    @employee = Employee.new(office: @current_office)
   end
 
   def create
     @employee = Employee.new(employee_params(params))
     @employee.save
 
-    redirect_to employee_path(@employee)
+    @current_office = @employee.office
+
+    redirect_to office_employee_path(@current_office, @employee)
   end
 
   def update
     @employee.update_attributes(employee_params(params))
 
-    redirect_to @employee
+    @current_office = @employee.office
+
+    redirect_to office_employee_path(@current_office, @employee)
   end
 
   def destroy
@@ -47,11 +40,12 @@ class EmployeesController < SecureController
       assignment.destroy
     end
 
-
+    @current_office = @employee.office 
+    
     @employee.destroy
     flash[:success] = "Employee Deleted"
 
-    redirect_to(action: :index)
+    redirect_to office_employees_path(@current_office)
   end
 
   private
@@ -60,7 +54,8 @@ class EmployeesController < SecureController
       params.require(:employee).permit(:first_name, :last_name, :email, :phone, :office_id)
     end 
 
-    def load_offices
-      @offices = Office.all
+    def get_employee
+      @employee = Employee.find(params[:id])
     end
+
 end

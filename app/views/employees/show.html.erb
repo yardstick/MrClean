@@ -5,13 +5,13 @@
 
 <br>
 
-<div>Office: <%= @employee.office.office_name %></div>
+<div>Office: <%= @employee.office.name %></div>
 
 <br>
 
 
 <%= link_to "Edit Information", edit_employee_path(@employee) %>
-<%= link_to "Delete Employee", @employee, method: :delete, data: {confirm: "You Sure?"} %>
+<%= link_to "Delete Employee", office_employee_path(@current_office, @employee), method: :delete, data: {confirm: "You Sure?"} %>
 
 
 

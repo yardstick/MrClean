@@ -1,14 +1,13 @@
 <h1>Employees</h1>
 
-<h3>Select Office.</h3>
-<div><%= link_to "All employees", employees_path %></div>
+<h3>Select Office</h3>
 <% Office.find_each do |office| %>
-  <div><%= link_to office.office_name, employees_path(office_id: office) %></div>
+  <div><%= link_to office.name, office_employees_path(office) %></div>
 <% end %>
 
 <br>
 
-<div>Currently Showing: <%= @office_name %></div>
+<div>Currently Showing: <%= @current_office.name %></div>
 
 <br>
 <table>
@@ -19,11 +18,11 @@
     <% @employees.each do |employee| %>
     <tr>
       <td>
-        <%= link_to employee_full_name(employee), employee_path(employee) %>   
+        <%= link_to employee_full_name(employee), office_employee_path(@current_office,employee) %>   
       </td>
     </tr>
     <% end %>
   </tr>
 </table>
 
-<%= link_to "Add New Employee", new_employee_path %>
+<%= link_to "Add New Employee", new_office_employee_path(@current_office) %>

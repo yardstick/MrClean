@@ -1,13 +1,13 @@
 <h1>Kitchen Schedule</h1>
 
-<h3>Select Office.</h3>
+<h3>Select Office</h3>
 <% Office.find_each do |office| %>
-  <div><%= link_to office.office_name, assignments_path(office_id: office) %></div>
+  <div><%= link_to office.name, office_assignments_path(office) %></div>
 <% end %>
 
 <br>
 
-<div>Currently Showing: <%= @office.office_name %></div>
+<div>Currently Showing: <%= @current_office.name %></div>
 
 <br>
 
@@ -27,10 +27,10 @@
       <%= print_date(week) %>
     </td>
     
-    <% week_assignments = get_weekly_office_assignments(week, @office) %>
-    <% week_assignments.each do |assignment| %>
+    <% week_assignments = week.employees.order(:first_name) %>
+    <% week_assignments.each do |employee| %>
       <td>
-        <%= "#{assignment.employee.first_name}" %>
+        <%= "#{employee.first_name}" %>
       </td>
     <% end %>
     
@@ -42,7 +42,7 @@
       
       <td>
         <% if can_edit_weeks? %>
-          <%= link_to "Edit Week", edit_assignment_path(week, office_id: @office) %>
+          <%= link_to "Edit Week", edit_office_assignment_path(@current_office, week) %>
         <% end %>
       </td>
   </tr>
@@ -50,7 +50,7 @@
 <tr>
   <td>
     <% if can_create_weeks? %>
-      <%= link_to "Add Week", new_week_path %>
+      <%= link_to "Add Week", new_office_week_path(@current_office) %>
     <% end %>
   <td>
 </tr>

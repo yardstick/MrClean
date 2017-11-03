@@ -1,6 +1,7 @@
 class GenerateNewWeekAssignments
-  def initialize(week)
+  def initialize(week,current_office)
     @week = week
+    @current_office = current_office
   end
 
   def call
@@ -14,7 +15,7 @@ class GenerateNewWeekAssignments
   private
 
     def generate_last_assignment_list
-      @last_assignment_list = Employee.find_each.map do |employee|
+      @last_assignment_list = @current_office.employees.map do |employee|
         last_employee_assignment(employee)
       end
 

@@ -4,8 +4,6 @@ class AddScheduleAssignment < ActiveRecord::Migration[5.1]
       t.belongs_to :week, null: false
       t.belongs_to :employee, null: false
 
-      t.belongs_to :office
-
       t.timestamps
 
     end

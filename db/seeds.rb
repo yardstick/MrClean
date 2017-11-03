@@ -9,8 +9,8 @@
   
 if Rails.env.development?
 
-  office1 = Office.create(office_name: "Edmonton")
-  office2 = Office.create(office_name: "Calgary")
+  office1 = Office.create(name: "Edmonton")
+  office2 = Office.create(name: "Calgary")
 
 
   #fills employees table with dummy employees
@@ -33,7 +33,7 @@ if Rails.env.development?
 
   
   20.times do |i|
-    Week.create(starts_at: @current_time)
+    Week.create(starts_at: @current_time, office: office1)
     @current_time = @current_time.next_week.beginning_of_week 
   end
 
@@ -42,13 +42,13 @@ if Rails.env.development?
 
 
   Week.find_each do |w|
-    Assignment.create(week: w, employee: Employee.find(@emp_id), office: office1)
+    Assignment.create(week: w, employee: Employee.find(@emp_id))
     @emp_id += 1
     if @emp_id > Employee.all.last.id
       @emp_id = 1
     end
 
-    Assignment.create(week: w, employee: Employee.find(@emp_id), office: office1)
+    Assignment.create(week: w, employee: Employee.find(@emp_id))
     @emp_id += 1
     if @emp_id > Employee.all.last.id
       @emp_id = 1
