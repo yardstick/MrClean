@@ -36,10 +36,6 @@ ActiveRecord::Schema.define(version: 20171030200258) do
     t.index ["office_id"], name: "index_employees_on_office_id"
   end
 
-  create_table "office", force: :cascade do |t|
-    t.string "office_name"
-  end
-
   create_table "offices", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false

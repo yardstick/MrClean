@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   #resources :assignments
   #resources :weeks
 
-  root to: 'assignments#index'
+  root to: 'offices#index'
 
 
 end

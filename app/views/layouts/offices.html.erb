@@ -16,16 +16,10 @@
     <% else %>
       <%= link_to "Log In", new_user_session_path %>
     <% end %>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    
-    <hr>
-    
-      <%= link_to "Home", offices_path %>
-    <% if can_index_employees? %>
-      <%= link_to "Schedule", office_assignments_path(@current_office) %>
-      <%= link_to "Employees", office_employees_path(@current_office) %>
-    <% end %>
+
 
     <%= yield %>
 

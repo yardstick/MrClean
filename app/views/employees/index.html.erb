@@ -1,15 +1,5 @@
-<h1>Employees</h1>
+<h1><%= @current_office.name %> Employees</h1>
 
-<h3>Select Office</h3>
-<% Office.find_each do |office| %>
-  <div><%= link_to office.name, office_employees_path(office) %></div>
-<% end %>
-
-<br>
-
-<div>Currently Showing: <%= @current_office.name %></div>
-
-<br>
 <table>
   <tr>
     <th>Employee Name</th>
@@ -24,5 +14,7 @@
     <% end %>
   </tr>
 </table>
+
+<br>
 
 <%= link_to "Add New Employee", new_office_employee_path(@current_office) %>

@@ -1,5 +1,5 @@
 class AssignmentsController < SecureController
-  helper :timestamp, :employee, :office_assignment
+  helper :timestamp, :employee, :office_schedule
 
   include EmployeeHelper
 
