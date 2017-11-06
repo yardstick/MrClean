@@ -1,3 +1,7 @@
 <h1> Edit Employee Information </h1>
 
 <%= render('form', employee: @employee) %>
+
+<br>
+
+<%= link_to "Cancel", office_employee_path(@employee) %>
