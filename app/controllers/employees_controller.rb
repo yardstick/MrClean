@@ -8,7 +8,7 @@ class EmployeesController < SecureController
   before_action :get_offices, only:[:new,:edit]
 
   def index
-      @employees = Employee.where(office: @current_office).order(:first_name)
+    @employees = Employee.where(office: @current_office).order(:first_name)
   end
 
   def new
@@ -25,11 +25,26 @@ class EmployeesController < SecureController
   end
 
   def update
+    @old_office = @employee.office
+
     @employee.update_attributes(employee_params(params))
 
     @current_office = @employee.office
 
-    redirect_to office_employee_path(@current_office, @employee)
+    #destroys upcoming assignments if the employee's office is changed
+    if @old_office != @current_office
+      assignments = Assignment.upcoming.where(employee: @employee)
+
+      assignments.each do |assignment|
+        assignment.destroy
+      end
+    end
+
+    if @employee.save  
+      redirect_to office_employee_path(@current_office, @employee)
+    else
+      render(:new)
+    end
   end
 
   def destroy
@@ -40,8 +55,7 @@ class EmployeesController < SecureController
       assignment.destroy
     end
 
-    @current_office = @employee.office 
-    
+    @current_office = @employee.office  
     @employee.destroy
     flash[:success] = "Employee Deleted"
 

@@ -29,7 +29,7 @@ if Rails.env.development?
   Employee.create(first_name: "Moe", last_name: "Whocares", email: "Moe@mail.com", phone:"1-111-111-1111", office: office1)
 
   #fill week table with 5 week starting Sept 4, 2017
-  @current_time = DateTime.new(2017,9,4).beginning_of_week
+  @current_time = DateTime.now.beginning_of_week
 
   
   20.times do |i|

@@ -17,7 +17,7 @@ class AssignmentsController < SecureController
     @week = Week.find(params[:week])
 
     if @week.fully_assigned?
-      redirect_to edit_office_assignment_path(@current_office,@week)
+      redirect_to edit_office_assignment_path(@current_office, @week)
     end
 
     @assignment = Assignment.new
@@ -49,7 +49,6 @@ class AssignmentsController < SecureController
     end
 
     def load_employees
-      @employees = @current_office.employees
+      @employees = @current_office.employees.order(:first_name)
     end
-
 end
