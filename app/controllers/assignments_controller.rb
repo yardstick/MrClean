@@ -6,11 +6,10 @@ class AssignmentsController < SecureController
   protect_from_forgery with: :exception
 
   skip_before_action :authenticate_user!, only:[:index]
-  before_action :get_current_office, only: [:index, :new, :edit]
   before_action :load_employees, only:[:edit, :new]
 
   def index
-    @weeks = @current_office.weeks.upcoming
+    @weeks = current_office.weeks.upcoming
   end
 
   def new
@@ -49,6 +48,6 @@ class AssignmentsController < SecureController
     end
 
     def load_employees
-      @employees = @current_office.employees.order(:first_name)
+      @employees = current_office.employees.order(:first_name)
     end
 end

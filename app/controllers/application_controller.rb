@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :store_user_location!, if: :storable_location?
 
+  helper_method :current_office
+
   private
 
     def storable_location?
@@ -13,11 +15,13 @@ class ApplicationController < ActionController::Base
       store_location_for(:user, request.fullpath)
     end
 
-    def get_current_office
-      if params[:office_id].present?
-        @current_office = Office.find(params[:office_id])
-      else
-        @current_office = Office.first
+    def current_office
+      @current_office ||= begin
+        if params[:office_id].present?
+          Office.find(params[:office_id])
+        else
+          Office.first
+        end
       end
     end
 

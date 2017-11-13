@@ -1,11 +1,8 @@
 class WeeksController < SecureController
   protect_from_forgery with: :exception
 
-  before_action :get_current_office
-
   def new
-    #current_office = Office.find(params[:office_id])
-    last_week = Week.where(office: @current_office).order(:starts_at).last #the last week added to the db
+    last_week = Week.where(office: current_office).order(:starts_at).last #the last week added to the db
 
     if last_week.present?
       new_week = last_week.starts_at.next_week.beginning_of_week
@@ -14,11 +11,11 @@ class WeeksController < SecureController
       new_week = DateTime.now.beginning_of_week
     end
 
-    week = Week.create(starts_at: new_week, office: @current_office)
+    week = Week.create(starts_at: new_week, office: current_office)
 
-    GenerateNewWeekAssignments.new(week, @current_office).call
+    GenerateNewWeekAssignments.new(week, current_office).call
 
-    redirect_to office_assignments_path( @current_office)
+    redirect_to office_assignments_path(current_office)
   end
 
 end

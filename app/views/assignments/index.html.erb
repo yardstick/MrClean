@@ -34,7 +34,7 @@
       
       <td>
         <% if can_edit_weeks? %>
-          <%= link_to "Edit Week", edit_office_assignment_path(@current_office, week) %>
+          <%= link_to "Edit Week", edit_office_assignment_path(current_office, week) %>
         <% end %>
       </td>
   </tr>
@@ -42,7 +42,7 @@
 <tr>
   <td>
     <% if can_create_weeks? %>
-      <%= link_to "Add Week", new_office_week_path(@current_office) %>
+      <%= link_to "Add Week", new_office_week_path(current_office) %>
     <% end %>
   <td>
 </tr>

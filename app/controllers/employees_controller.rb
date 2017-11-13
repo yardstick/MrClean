@@ -3,16 +3,15 @@ class EmployeesController < SecureController
 
   protect_from_forgery with: :exception
 
-  before_action :get_current_office, only:[:index, :new, :create, :edit, :show]
   before_action :get_employee, only:[:show, :edit, :update, :destroy]
   before_action :get_offices, only:[:new,:edit]
 
   def index
-    @employees = Employee.where(office: @current_office).order(:first_name)
+    @employees = Employee.where(office: current_office).order(:first_name)
   end
 
   def new
-    @employee = Employee.new(office: @current_office)
+    @employee = Employee.new(office: current_office)
   end
 
   def create

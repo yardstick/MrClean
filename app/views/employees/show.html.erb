@@ -10,8 +10,8 @@
 <br>
 
 
-<%= link_to "Edit Information", edit_office_employee_path(@current_office, @employee) %>
-<%= link_to "Delete Employee", office_employee_path(@current_office, @employee), method: :delete, data: {confirm: "You Sure?"} %>
+<%= link_to "Edit Information", edit_office_employee_path(current_office, @employee) %>
+<%= link_to "Delete Employee", office_employee_path(current_office, @employee), method: :delete, data: {confirm: "Are you sure you want to delete this employee? All of their information and upcoming assignments will be deleted!"} %>
 
 
 
