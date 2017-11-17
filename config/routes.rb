@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :employees
-  resources :assignments
-  resources :weeks
+  resources :offices do
+    resources :employees
+    resources :assignments
+    resources :weeks
+  end
+  #resources :employees
+  #resources :assignments
+  #resources :weeks
 
-  root to: 'assignments#index'
+  root to: 'offices#index'
 
 
 end

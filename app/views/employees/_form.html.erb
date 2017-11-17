@@ -1,4 +1,4 @@
-<%= form_for(employee) do |f| %>
+<%= form_for([current_office, employee]) do |f| %>
   <div>
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name, class: 'form-control' %>
@@ -7,14 +7,22 @@
     <%= f.label :last_name %><br>
     <%= f.text_field :last_name, class: 'form-control' %>
   </div>
+  <br>
   <div>
     <%= f.label :email %><br>
     <%= f.email_field :email, class: 'form-control' %>
   </div>
+  <br>
   <div>
     <%= f.label :phone %><br>
     <%= f.phone_field :phone, class: 'form-control' %>
   </div>
+  <br>
+  <div>
+    <%= f.label :office %><br>
+    <%= f.select :office_id,  @offices.map { |office| [office.name, office.id] } %><br>
+  </div>
+  <br>
   <div>
     <% submit_text = f.object.new_record? ? 'Save' : "Save changes" %>
     <%= f.submit submit_text, class: "btn btn-primary" %>
