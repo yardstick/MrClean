@@ -1,6 +1,8 @@
 <h1><%= @current_office.name %> Kitchen Schedule</h1>
 
-<table>
+<br>
+
+<table class="table">
 <tr>
   <th>
     Dates
@@ -8,6 +10,12 @@
   <th>
     Employees
   </th>
+
+  <th></th>
+  
+  <% if can_edit_weeks? %>
+    <th></th>
+  <% end %>
 </tr>
 
 <% @weeks.each do |week| %>
@@ -29,11 +37,11 @@
       <% end %>
     <%end%>
       
-      <td>
-        <% if can_edit_weeks? %>
+    <% if can_edit_weeks? %>
+        <td>
           <%= link_to "Edit Week", edit_office_assignment_path(current_office, week) %>
-        <% end %>
-      </td>
+        </td>
+    <% end %>
   </tr>
 <% end %>
 <tr>
