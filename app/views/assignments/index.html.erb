@@ -2,7 +2,8 @@
 
 <br>
 
-<table class="table">
+<table class="table table-sm">
+<thead class="bg-dark table-dark">
 <tr>
   <th>
     Dates
@@ -17,7 +18,8 @@
     <th></th>
   <% end %>
 </tr>
-
+</thead>
+<tbody>
 <% @weeks.each do |week| %>
   <tr>
     <td>
@@ -49,9 +51,9 @@
     <% if can_create_weeks? %>
       <%= link_to "Add Week", new_office_week_path(current_office) %>
     <% end %>
-  <td>
+  </td>
 </tr>
-
+</tbody>
 </table>
-
+</div>
 
