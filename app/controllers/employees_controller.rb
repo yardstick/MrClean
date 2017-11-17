@@ -73,5 +73,4 @@ class EmployeesController < SecureController
     def get_employee
       @employee = Employee.find(params[:id])
     end
-
 end
