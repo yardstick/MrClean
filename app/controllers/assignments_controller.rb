@@ -38,7 +38,7 @@ class AssignmentsController < SecureController
 
     @assignment.update_attributes(assignment_params(params))
 
-    redirect_to office_assignments_path(@assignment.week.office)
+    redirect_to edit_office_assignment_path(@assignment.week.office, @assignment.week)
   end
 
   private
