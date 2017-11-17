@@ -8,8 +8,8 @@ class OfficesController < SecureController
 
   private
 
-  def home_page
-    @home_page = true
-  end
+    def home_page
+      @home_page = true
+    end
 
 end
