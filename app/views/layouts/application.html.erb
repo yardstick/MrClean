@@ -13,17 +13,22 @@
     
     <% if user_signed_in? %>
       <%= link_to "Log Out", destroy_user_session_path %>
-    <%else%>
+    <% else %>
       <%= link_to "Log In", new_user_session_path %>
-    <%end%>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     
     <hr>
     
-    <% if can_index_employees? %>
-      <%= link_to "Schedule", assignments_path %>
-      <%= link_to "Employees", employees_path %>
+    <% if(!@home_page) %> 
+      <%= link_to "Home", offices_path %>
+      
+      <% if can_index_employees? %>
+        <%= link_to "Schedule", office_assignments_path(current_office) %>
+        <%= link_to "Employees", office_employees_path(current_office) %>
+      <% end %>
+      
     <% end %>
 
     <%= yield %>

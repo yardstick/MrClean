@@ -1,0 +1,7 @@
+<h1>Welcome</h1>
+
+<h3>Choose an Office</h3>
+
+<% @offices.each do |office| %>
+  <div> <%= link_to office.name, office_assignments_path(office) %> </div>
+<% end %>

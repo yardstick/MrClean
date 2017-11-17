@@ -1,6 +1,7 @@
 class GenerateNewWeekAssignments
-  def initialize(week)
+  def initialize(week,current_office)
     @week = week
+    @current_office = current_office
   end
 
   def call
@@ -14,23 +15,25 @@ class GenerateNewWeekAssignments
   private
 
     def generate_last_assignment_list
-      @last_assignment_list = Employee.find_each.map do |employee|
+      @last_assignment_list = @current_office.employees.map do |employee|
         last_employee_assignment(employee)
       end
 
-      @last_assignment_list = @last_assignment_list.sort_by {|assignment| [assignment.week.created_at, assignment.id , assignment.employee.id]}
+      @last_assignment_list = @last_assignment_list.sort_by {|assignment| [assignment.week.starts_at, assignment.id , assignment.employee.id]}
     end
 
     def last_employee_assignment(employee)
       Assignment.where(employee: employee).order(:week_id, :id).last ||
-        Assignment.new(week: @week, employee: employee, created_at: Time.zone.now)
+        Assignment.new(week: Week.new(starts_at: employee.created_at, office: @current_office), employee: employee, created_at: employee.created_at)
     end
 
     def create_week_assignment
-      employee = @last_assignment_list.first.employee
+      if @last_assignment_list.count >= 1
+        employee = @last_assignment_list.first.employee
 
-      Assignment.create(week: @week, employee: employee)
+        Assignment.create(week: @week, employee: employee)
 
-      @last_assignment_list.shift
+        @last_assignment_list.shift
+      end
     end
 end

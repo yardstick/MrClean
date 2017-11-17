@@ -1,4 +1,4 @@
-<h1>Kitchen Schedule</h1>
+<h1><%= @current_office.name %> Kitchen Schedule</h1>
 
 <table>
 <tr>
@@ -23,22 +23,15 @@
       </td>
     <% end %>
     
-    <% if week_assignments.count == 1 %>
-      <td>
-        <b>EMPTY</b>
-      </td>
-    <% elsif week_assignments.count == 0 %>
-      <td>
-        <b>EMPTY</b>
-      </td>
-      <td>
-        <b>EMPTY</b>
-      </td>
+    <% if week_assignments.count != 2 %>
+      <% (2 - week_assignments.count).times do %>
+        <td><b>EMPTY</b></td>
+      <% end %>
     <%end%>
       
       <td>
         <% if can_edit_weeks? %>
-          <%= link_to "Edit Week", edit_assignment_path(week) %>
+          <%= link_to "Edit Week", edit_office_assignment_path(current_office, week) %>
         <% end %>
       </td>
   </tr>
@@ -46,7 +39,7 @@
 <tr>
   <td>
     <% if can_create_weeks? %>
-      <%= link_to "Add Week", new_week_path %>
+      <%= link_to "Add Week", new_office_week_path(current_office) %>
     <% end %>
   <td>
 </tr>
