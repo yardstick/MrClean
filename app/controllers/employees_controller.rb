@@ -16,11 +16,14 @@ class EmployeesController < SecureController
 
   def create
     @employee = Employee.new(employee_params(params))
-    @employee.save
 
     @current_office = @employee.office
 
-    redirect_to office_employee_path(@current_office, @employee)
+    if @employee.save  
+      redirect_to office_employee_path(@current_office, @employee)
+    else
+      render(:new)
+    end
   end
 
   def update

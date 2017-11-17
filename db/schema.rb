@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030200258) do
+ActiveRecord::Schema.define(version: 20171117225808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20171030200258) do
     t.string "last_name", null: false
     t.string "email"
     t.string "phone"
-    t.bigint "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "office_id", null: false
     t.index ["office_id"], name: "index_employees_on_office_id"
   end
 
@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 20171030200258) do
 
   create_table "weeks", force: :cascade do |t|
     t.datetime "starts_at", null: false
-    t.bigint "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "office_id", null: false
     t.index ["office_id"], name: "index_weeks_on_office_id"
   end
 

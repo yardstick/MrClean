@@ -6,8 +6,6 @@ class AddEmployee < ActiveRecord::Migration[5.1]
       t.string :email
       t.string :phone
 
-      t.belongs_to :office
-
       t.timestamps
     end
   end
