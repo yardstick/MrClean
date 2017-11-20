@@ -1,24 +1,19 @@
 <h1><%= @current_office.name %> Employees</h1>
 
-<br>
-
-<table class="table">
-  <tr>
-    <th>Employee Name</th>
-  </tr>
-  <tr>
-    <% @employees.each do |employee| %>
-    <tr>
-      <td>
-        <%= link_to employee_full_name(employee), office_employee_path(current_office, employee) %>   
-      </td>
-    </tr>
-    <% end %>
-  </tr>
-</table>
+<div class="row">
+  <div class="col-md-6">
+    Employee Name
+  </div>
+</div>
+<% @employees.each do |employee| %>
+  <div class="row">
+    <div class="col-md-6"> 
+      <%= link_to employee_full_name(employee), office_employee_path(current_office, employee) %>
+    </div>
+  </div>
+<% end %> 
 
 <br>
 
 <%= link_to "Add New Employee", new_office_employee_path(current_office) %>
 
-<br><br>

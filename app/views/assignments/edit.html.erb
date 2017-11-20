@@ -2,9 +2,9 @@
 
 <%= print_date(@week) %>
 
+<br><br>
 <% @assignments.each do |assignment| %>
   <%= render('form', assignment: assignment) %>
-  <br>
 <% end %>
 
 

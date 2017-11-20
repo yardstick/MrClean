@@ -1,59 +1,59 @@
+
+
 <h1><%= @current_office.name %> Kitchen Schedule</h1>
 
-<br>
 
-<table class="table table-sm">
-<thead class="bg-dark table-dark">
-<tr>
-  <th>
-    Dates
-  </th>
-  <th>
-    Employees
-  </th>
+<table class="table table-sm table-borderless">
+  <thead class="bg-dark table-dark">
+    <tr>
+      <th>
+        Dates
+      </th>
+      <th>
+        Employees
+      </th>
 
-  <th></th>
+      <th></th>
   
-  <% if can_edit_weeks? %>
-    <th></th>
-  <% end %>
-</tr>
-</thead>
-<tbody>
-<% @weeks.each do |week| %>
-  <tr>
-    <td>
-      <%= print_date(week) %>
-    </td>
-    
-    <% week_assignments = week.employees.order(:first_name) %>
-    <% week_assignments.each do |employee| %>
-      <td>
-        <%= "#{employee.first_name}" %>
-      </td>
-    <% end %>
-    
-    <% if week_assignments.count != 2 %>
-      <% (2 - week_assignments.count).times do %>
-        <td><b>EMPTY</b></td>
+      <% if can_edit_weeks? %>
+        <th></th>
       <% end %>
-    <%end%>
-      
-    <% if can_edit_weeks? %>
+      </tr>
+    </thead>
+  <tbody>
+    <% @weeks.each do |week| %>
+      <tr>
         <td>
-          <%= link_to "Edit Week", edit_office_assignment_path(current_office, week) %>
+          <%= print_date(week) %>
         </td>
+    
+        <% week_assignments = week.employees.order(:first_name) %>
+        <% week_assignments.each do |employee| %>
+          <td>
+            <%= "#{employee.first_name}" %>
+          </td>
+        <% end %>
+    
+        <% if week_assignments.count != 2 %>
+          <% (2 - week_assignments.count).times do %>
+            <td><b>EMPTY</b></td>
+          <% end %>
+        <%end%>
+      
+        <% if can_edit_weeks? %>
+          <td>
+            <%= link_to "Edit Week", edit_office_assignment_path(current_office, week) %>
+          </td>
+        <% end %>
+      </tr>
     <% end %>
-  </tr>
-<% end %>
-<tr>
-  <td>
-    <% if can_create_weeks? %>
-      <%= link_to "Add Week", new_office_week_path(current_office) %>
-    <% end %>
-  </td>
-</tr>
-</tbody>
+    <tr>
+      <td>
+        <% if can_create_weeks? %>
+          <%= link_to "Add Week", new_office_week_path(current_office) %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
 </table>
-</div>
 
