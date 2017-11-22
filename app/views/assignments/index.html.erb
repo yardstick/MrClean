@@ -34,7 +34,7 @@
           </td>
         <% end %>
     
-        <% if week_assignments.count != 2 %>
+        <% if !week.fully_assigned? %>
           <% (2 - week_assignments.count).times do %>
             <td><b>EMPTY</b></td>
           <% end %>
