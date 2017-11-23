@@ -1,49 +1,59 @@
+
+
 <h1><%= @current_office.name %> Kitchen Schedule</h1>
 
-<table>
-<tr>
-  <th>
-    Dates
-  </th>
-  <th>
-    Employees
-  </th>
-</tr>
 
-<% @weeks.each do |week| %>
-  <tr>
-    <td>
-      <%= print_date(week) %>
-    </td>
-    
-    <% week_assignments = week.employees.order(:first_name) %>
-    <% week_assignments.each do |employee| %>
-      <td>
-        <%= "#{employee.first_name}" %>
-      </td>
-    <% end %>
-    
-    <% if week_assignments.count != 2 %>
-      <% (2 - week_assignments.count).times do %>
-        <td><b>EMPTY</b></td>
+<table class="table table-sm table-borderless">
+  <thead class="bg-dark table-dark">
+    <tr>
+      <th>
+        Dates
+      </th>
+      <th>
+        Employees
+      </th>
+
+      <th></th>
+  
+      <% if can_edit_weeks? %>
+        <th></th>
       <% end %>
-    <%end%>
+      </tr>
+    </thead>
+  <tbody>
+    <% @weeks.each do |week| %>
+      <tr>
+        <td>
+          <%= print_date(week) %>
+        </td>
+    
+        <% week_assignments = week.employees.order(:first_name) %>
+        <% week_assignments.each do |employee| %>
+          <td>
+            <%= "#{employee.first_name}" %>
+          </td>
+        <% end %>
+    
+        <% if !week.fully_assigned? %>
+          <% (2 - week_assignments.count).times do %>
+            <td><b>EMPTY</b></td>
+          <% end %>
+        <%end%>
       
-      <td>
         <% if can_edit_weeks? %>
-          <%= link_to "Edit Week", edit_office_assignment_path(current_office, week) %>
+          <td>
+            <%= link_to "Edit Week", edit_office_assignment_path(current_office, week) %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+    <tr>
+      <td>
+        <% if can_create_weeks? %>
+          <%= link_to "Add Week", new_office_week_path(current_office) %>
         <% end %>
       </td>
-  </tr>
-<% end %>
-<tr>
-  <td>
-    <% if can_create_weeks? %>
-      <%= link_to "Add Week", new_office_week_path(current_office) %>
-    <% end %>
-  <td>
-</tr>
-
+    </tr>
+  </tbody>
 </table>
-
 

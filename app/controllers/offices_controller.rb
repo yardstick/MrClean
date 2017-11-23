@@ -11,5 +11,4 @@ class OfficesController < SecureController
     def home_page
       @home_page = true
     end
-
 end

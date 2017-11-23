@@ -6,32 +6,46 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
   </head>
 
   <body>
-    
-    
-    <% if user_signed_in? %>
-      <%= link_to "Log Out", destroy_user_session_path %>
-    <% else %>
-      <%= link_to "Log In", new_user_session_path %>
-    <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    
-    <hr>
-    
-    <% if(!@home_page) %> 
-      <%= link_to "Home", offices_path %>
-      
-      <% if can_index_employees? %>
-        <%= link_to "Schedule", office_assignments_path(current_office) %>
-        <%= link_to "Employees", office_employees_path(current_office) %>
-      <% end %>
-      
-    <% end %>
 
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <%= link_to "Home", offices_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <% if can_index_employees? && !@home_page %>
+              <li class="nav-item"><%= link_to "Schedule", office_assignments_path(current_office), class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "Employees", office_employees_path(current_office),  class: "nav-link" %></li>
+          <% end %>
+      </ul>
+      <ul class="navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li class="nav-item"><%= link_to "Log Out", destroy_user_session_path, class: "nav-link" %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "Log In", new_user_session_path, class: "nav-link" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+
+  <br>
+
+  <div class="container">
     <%= yield %>
+  </div>
 
   </body>
 </html>
