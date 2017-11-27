@@ -1,6 +1,6 @@
 Hello <%= @employee.first_name %>,
 
-This is a reminder that you are assigned to kitchen duties this week. 
+This is a reminder that you are assigned to kitchen duties from <%= print_date(@assignment.week) %>. 
 
 You can view the schedule here: <%= office_assignments_url(@current_office) %>
 
