@@ -1,0 +1,18 @@
+@media print
+{
+  #assignments_table
+  {
+    width: 700px;
+  }
+
+  .table th.table_header
+  {
+    background-color: #000 !important;
+  }
+
+  .edit_weeks, .create_week, #site_navbar
+  {
+    visibility: hidden;
+    display: none;
+  }
+}
