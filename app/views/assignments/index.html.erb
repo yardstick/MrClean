@@ -6,17 +6,17 @@
 <table class="table table-sm table-borderless" id="assignments_table">
   <thead class="thead-dark">
     <tr>
-      <th id="table-header">
+      <th class="table_header">
         Dates
       </th>
-      <th id="table-header">
+      <th class="table_header">
         Employees
       </th>
 
-      <th id=table-header></th>
+      <th class="table_header"></th>
   
       <% if can_edit_weeks? %>
-        <th id="edit_weeks"></th>
+        <th class="edit_weeks"></th>
       <% end %>
       </tr>
     </thead>
@@ -41,7 +41,7 @@
         <%end%>
       
         <% if can_edit_weeks? %>
-          <td id="edit_weeks">
+          <td class="edit_weeks">
             <%= link_to "Edit Week", edit_office_assignment_path(current_office, week) %>
           </td>
         <% end %>
@@ -50,7 +50,7 @@
     <tr>
       <td>
         <% if can_create_weeks? %>
-          <div id="create_week">
+          <div class="create_week">
             <%= link_to "Add Week", new_office_week_path(current_office) %>
           </div>
         <% end %>

@@ -5,12 +5,12 @@
     width: 700px;
   }
 
-  #table-header
+  .table th.table_header
   {
     background-color: #000 !important;
   }
 
-  #edit_weeks, #create_week, #site_navbar
+  .edit_weeks, .create_week, #site_navbar
   {
     visibility: hidden;
     display: none;
