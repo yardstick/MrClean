@@ -1,0 +1,48 @@
+<h1><%= current_office.name %> Kitchen Schedule</h1>
+
+<%= form_for(:assignments) do |form|%>
+
+<table class="table table-sm table-borderless" id="assignments_table">
+  <thead class="thead-dark">
+    <tr>
+      <th class="table_header">
+        Dates
+      </th>
+      <th class="table_header">
+        Employees
+      </th>
+
+      <th class="table_header"></th>
+      </tr>
+    </thead>
+  <tbody>
+
+    <% @weeks.each do |week| %>
+      <tr>
+        <td>
+          <%= print_date(week) %>
+        </td>
+    
+        <% week_assignments = week.assignments.order(:created_at) %>
+        <% week_assignments.each do |assignment| %>
+          <td>
+            <%= form.check_box :assignment_id, { multiple: true }, assignment.id, false %>
+            <%= form.label :assignment, assignment.employee.first_name %>
+          </td>
+        <% end %>
+    
+        <% if !week.fully_assigned? %>
+          <% (2 - week_assignments.count).times do %>
+            <td><b>EMPTY</b></td>
+          <% end %>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="form-group">
+  <%= form.submit "Swap", class: "btn btn-primary" %>
+</div>
+
+<% end %>
