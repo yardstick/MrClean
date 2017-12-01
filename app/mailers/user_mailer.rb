@@ -1,6 +1,4 @@
 class UserMailer < ApplicationMailer
-  helper :timestamp
-
   def assignment_reminder(assignment)
     @assignment = assignment
     @employee = @assignment.employee
