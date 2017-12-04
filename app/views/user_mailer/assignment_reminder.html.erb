@@ -1,7 +1,7 @@
 
 <p>Hello <%= @employee.first_name %>,  </p>
 
-<p>This is a reminder that you are assigned to kitchen duties this week. </p>
+<p>This is a reminder that you are assigned to kitchen duties next week (<%= @assignment.week.starts_at.strftime('%B %-d') %>). </p>
 
 <p>You can view the schedule <%= link_to "here", office_assignments_url(@current_office) %>. </p>
 
