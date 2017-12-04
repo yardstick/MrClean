@@ -27,33 +27,20 @@ if Rails.env.development?
   Employee.create(first_name: "Kevin", last_name: "Ericson", email: "Eric@mail.com", phone: "1-800-555-5555", office: office1)
   Employee.create(first_name: "Lamar", last_name: "Franklin", email: "Frank@mail.com", phone: "1-800-666-6666", office: office1)
   Employee.create(first_name: "Moe", last_name: "Whocares", email: "Moe@mail.com", phone:"1-111-111-1111", office: office1)
+  Employee.create(first_name: "Ned", last_name: "Andrews", email: "Aaron@mail.com", phone: "1-800-555-1111", office: office1)
+  Employee.create(first_name: "Omar", last_name: "Bean", email: "Bret@mail.com", phone: "1-800-555-2222", office: office1)
+  Employee.create(first_name: "Patty",last_name: "Chase", email: "Charlie@mail.com", phone: "1-800-555-3333", office: office1)
+  Employee.create(first_name: "Red", last_name: "Daniels", email: "Dave@mail.com", phone: "1-800-555-4444", office: office1)
+  Employee.create(first_name: "Sarah", last_name: "Ericson", email: "Eric@mail.com", phone: "1-800-555-5555", office: office1)
+  Employee.create(first_name: "Ted", last_name: "Franklin", email: "Frank@mail.com", phone: "1-800-666-6666", office: office1)
+  Employee.create(first_name: "U-name", last_name: "Andrews", email: "Aaron@mail.com", phone: "1-800-555-1111", office: office1)
+  Employee.create(first_name: "Vince", last_name: "Bean", email: "Bret@mail.com", phone: "1-800-555-2222", office: office1)
+  Employee.create(first_name: "Wendy",last_name: "Chase", email: "Charlie@mail.com", phone: "1-800-555-3333", office: office1)
+  Employee.create(first_name: "Xavier", last_name: "Daniels", email: "Dave@mail.com", phone: "1-800-555-4444", office: office1)
+  Employee.create(first_name: "Q", last_name: "Ericson", email: "Eric@mail.com", phone: "1-800-555-5555", office: office1)
+  Employee.create(first_name: "Y", last_name: "Franklin", email: "Frank@mail.com", phone: "1-800-666-6666", office: office1)
+  Employee.create(first_name: "Z", last_name: "Whocares", email: "Moe@mail.com", phone:"1-111-111-1111", office: office1)
 
-  #fill week table with 5 week starting Sept 4, 2017
-  @current_time = DateTime.now.beginning_of_week
-
-  
-  20.times do |i|
-    Week.create(starts_at: @current_time, office: office1)
-    @current_time = @current_time.next_week.beginning_of_week 
-  end
-
-  #assigns two employees to a week in numerical order
-  @emp_id = 1
-
-
-  Week.find_each do |w|
-    Assignment.create(week: w, employee: Employee.find(@emp_id))
-    @emp_id += 1
-    if @emp_id > Employee.all.last.id
-      @emp_id = 1
-    end
-
-    Assignment.create(week: w, employee: Employee.find(@emp_id))
-    @emp_id += 1
-    if @emp_id > Employee.all.last.id
-      @emp_id = 1
-    end
-  end
 
   User.create(email: "admin@mail.com", password: "123456", password_confirmation: "123456")
 
