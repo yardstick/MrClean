@@ -41,32 +41,6 @@ if Rails.env.development?
   Employee.create(first_name: "Y", last_name: "Franklin", email: "Frank@mail.com", phone: "1-800-666-6666", office: office1)
   Employee.create(first_name: "Z", last_name: "Whocares", email: "Moe@mail.com", phone:"1-111-111-1111", office: office1)
 
-  #fill week table with 5 week starting Sept 4, 2017
-  @current_time = DateTime.now.beginning_of_week
-
-  
-  3.times do |i|
-    #Week.create(starts_at: @current_time, office: office1)
-    @current_time = @current_time.next_week.beginning_of_week 
-  end
-
-  #assigns two employees to a week in numerical order
-  @emp_id = 1
-
-
-  Week.find_each do |w|
-    #Assignment.create(week: w, employee: Employee.find(@emp_id))
-    @emp_id += 1
-    if @emp_id > Employee.all.last.id
-      @emp_id = 1
-    end
-
-    #Assignment.create(week: w, employee: Employee.find(@emp_id))
-    @emp_id += 1
-    if @emp_id > Employee.all.last.id
-      @emp_id = 1
-    end
-  end
 
   User.create(email: "admin@mail.com", password: "123456", password_confirmation: "123456")
 
