@@ -1,6 +1,6 @@
 <h1><%= current_office.name %> Kitchen Schedule</h1>
 
-<%= form_for(:assignments) do |form|%>
+<%= form_for(:assignments, html: { id: "swapping_form" }) do |form|%>
 
 <table class="table table-sm table-borderless" id="assignments_table">
   <thead class="thead-dark">
@@ -42,7 +42,8 @@
 </table>
 
 <div class="form-group">
-  <%= form.submit "Swap", class: "btn btn-primary" %>
+  <%= form.submit "Swap", class: "btn btn-primary", id: "submit_btn" %>
 </div>
+<div id="form_error_div"></div>
 
 <% end %>
