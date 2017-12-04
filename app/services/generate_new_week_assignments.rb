@@ -31,14 +31,16 @@ class GenerateNewWeekAssignments
       count = @last_assignment_list.count
 
       if count >= 2
-        @new_assignment = Assignment.new
+        assignment_saved = false
 
-        while !@new_assignment.save 
+        while !assignment_saved 
           arr_index = exponential_distribution(count)
 
           employee = @last_assignment_list[arr_index].employee
 
-          @new_assignment = Assignment.new(week: @week, employee: employee)
+          new_assignment = Assignment.new(week: @week, employee: employee)
+
+          assignment_saved = new_assignment.save
         end
       elsif count == 1
         employee = @last_assignment_list.first.employee
