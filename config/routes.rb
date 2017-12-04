@@ -8,9 +8,5 @@ Rails.application.routes.draw do
     resources :assignment_swap, only:[:index, :create]
   end
 
-  #get '/offices/:id/swap', to: 'assignments#swap'
-  #post '/offices/:id/swap', to: 'assignments#update_swap'
   root to: 'offices#index'
-
-
 end

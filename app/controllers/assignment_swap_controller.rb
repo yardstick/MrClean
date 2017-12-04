@@ -1,34 +1,37 @@
-class AssignmentSwapController < SecureController
-
-  skip_before_action :authenticate_user!
+class AssignmentSwapController < ApplicationController
 
   def index
     @weeks = current_office.weeks.upcoming 
   end
 
   def create
-    #no assignments were selected
-    if !(params.has_key?("assignment"))
-      redirect_to office_assignment_swap_index_path
-      return
-    end
+    swap_assignments(params[:assignments][:assignment_id]) unless less_than_two_assignments_selected?(params)
 
-    # only 1 or more than 2 assignments were selected
-    if params[:assignments][:assignment_id].count != 2
-      redirect_to office_assignment_swap_index_path
-      return
-    end
-
-    ass1 = Assignment.find(params[:assignments][:assignment_id].first)
-    ass2 = Assignment.find(params[:assignments][:assignment_id].second)
-
-    employee1 = ass1.employee
-    employee2 = ass2.employee
-
-    ass1.update(employee: employee2)
-    ass2.update(employee: employee1)
-
-    redirect_to office_assignment_swap_index_path
+    redirect_to(action: "index")
   end
 
+  private
+
+    def less_than_two_assignments_selected?(params)
+      if !(params.has_key?("assignments"))
+        return true
+      elsif params[:assignments][:assignment_id].count != 2
+        return true
+      else
+        return false
+      end
+    end
+
+    def swap_assignments(assignment_ids)
+      assignment1 = Assignment.find(assignment_ids.first)
+      assignment2 = Assignment.find(assignment_ids.second)
+
+      employee1 = assignment1.employee
+      employee2 = assignment2.employee
+
+      Assignment.transaction do
+        assignment1.update!(employee: employee2)
+        assignment2.update!(employee: employee1)
+      end
+    end
 end
