@@ -42,8 +42,10 @@
 </table>
 
 <div class="form-group">
-  <%= form.submit "Swap", class: "btn btn-primary", id: "submit_btn" %>
+  <%= form.submit "Swap", class: "btn btn-dark", id: "submit_btn" %>
+  <div id="form_error_div"></div>
 </div>
-<div id="form_error_div"></div>
+<%= link_to "Back", office_assignments_path(current_office), class: "btn btn-dark" %>
+
 
 <% end %>
