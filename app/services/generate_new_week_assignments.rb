@@ -7,7 +7,7 @@ class GenerateNewWeekAssignments
   def call
     generate_last_assignment_list
 
-    2.times do
+    @current_office.num_assignments_per_week.times do
       create_week_assignment
     end
   end

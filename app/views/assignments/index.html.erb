@@ -13,8 +13,10 @@
         Employees
       </th>
 
-      <th class="table_header"></th>
-  
+      <% (current_office.num_assignments_per_week - 1).times do %>
+        <th class="table_header"></th>
+      <% end %>
+
       <% if can_edit_weeks? %>
         <th class="edit_weeks"></th>
       <% end %>
@@ -35,7 +37,7 @@
         <% end %>
     
         <% if !week.fully_assigned? %>
-          <% (2 - week_assignments.count).times do %>
+          <% (current_office.num_assignments_per_week - week_assignments.count).times do %>
             <td><b>EMPTY</b></td>
           <% end %>
         <%end%>
