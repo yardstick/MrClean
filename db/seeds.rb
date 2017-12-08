@@ -9,8 +9,8 @@
   
 if Rails.env.development?
 
-  office1 = Office.create(name: "Edmonton")
-  office2 = Office.create(name: "Calgary")
+  office1 = Office.create(name: "Edmonton", num_assignments_per_week: 2)
+  office2 = Office.create(name: "Calgary", num_assignments_per_week: 1)
 
 
   #fills employees table with dummy employees
