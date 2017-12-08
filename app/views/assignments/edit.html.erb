@@ -9,5 +9,5 @@
 
 
 <% if !@week.fully_assigned? %>
-  <div><%= link_to "Add assignment", new_office_assignment_path(current_office, week: @week) %></div>
+  <div><%= link_to "Add assignment", new_office_assignment_path(current_office, week: @week), class: "btn btn-dark btn-sm" %></div>
 <%end%>

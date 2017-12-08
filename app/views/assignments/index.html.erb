@@ -12,7 +12,9 @@
         Employees
       </th>
 
-      <th class="table-header"></th>
+      <% (current_office.num_assignments_per_week - 1).times do %>
+        <th class="table_header"></th>
+      <% end %>
   
       <% if can_edit_weeks? %>
         <th class="edit_weeks"></th>
@@ -34,7 +36,7 @@
         <% end %>
     
         <% if !week.fully_assigned? %>
-          <% (2 - week_assignments.count).times do %>
+          <% (current_office.num_assignments_per_week - week_assignments.count).times do %>
             <td><b>EMPTY</b></td>
           <% end %>
         <%end%>
@@ -45,18 +47,13 @@
           </td>
         <% end %>
       </tr>
-    <% end %>
-    <tr>
-      <td>
-        <% if can_create_weeks? %>
-          <div class="create_week">
-            <%= link_to "Add Week", new_office_week_path(current_office), class: "btn btn-dark"%>
-          </div>
-        <% end %>
-      </td>
-    </tr>
+    <% end %> 
   </tbody>
 </table>
 
+<% if can_create_weeks? %>  
+  <div class="create_week">
+    <%= link_to "Add Week", new_office_week_path(current_office), class: "btn btn-dark" %>
+  </div>
+<% end %> 
 <%= link_to "Edit Schedule", office_assignment_swap_index_path, class: "btn btn-dark swap-btn" %>
-

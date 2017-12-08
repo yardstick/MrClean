@@ -1,7 +1,5 @@
 class Week < ActiveRecord::Base
 
-  ASSIGNMENTS_PER_WEEK = 2
-
   validates :starts_at, presence: true, uniqueness: {scope: [:office]}
 
   has_many :assignments
@@ -12,7 +10,7 @@ class Week < ActiveRecord::Base
   scope :upcoming, -> { where('starts_at > ?', Time.zone.now.last_week.end_of_week) }
 
   def fully_assigned?
-    assignments.count >= ASSIGNMENTS_PER_WEEK
+    assignments.count >= office.num_assignments_per_week
   end
 
 end
