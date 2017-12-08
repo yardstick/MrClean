@@ -14,10 +14,6 @@
     <%= f.email_field :email, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :phone %><br>
-    <%= f.phone_field :phone, class: 'form-control' %>
-  </div>
-  <div class="form-group">
     <%= f.label :office %><br>
     <%= f.select :office_id,  @offices.map { |office| [office.name, office.id] } %><br>
   </div>

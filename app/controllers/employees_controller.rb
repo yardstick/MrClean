@@ -67,7 +67,7 @@ class EmployeesController < SecureController
   private
 
     def employee_params(params)
-      params.require(:employee).permit(:first_name, :last_name, :email, :phone, :office_id)
+      params.require(:employee).permit(:first_name, :last_name, :email, :office_id)
     end 
 
     def get_employee
