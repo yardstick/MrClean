@@ -1,8 +1,8 @@
 
 //checks if the form can be submitted
-function check_valid_form(event)
+function checkValidForm(event)
 {
-  var numChecked = count_checkboxes();
+  var numChecked = countCheckboxes();
   errorDiv = document.getElementById("form-error-div");
 
   if(numChecked != 2)
@@ -18,9 +18,9 @@ function check_valid_form(event)
 }
 
 //checks if the submit button should be enabled
-function submitable_form()
+function submitableForm()
 {
-  var numChecked = count_checkboxes();
+  var numChecked = countCheckboxes();
 
   if(numChecked == 2)
   {
@@ -33,7 +33,7 @@ function submitable_form()
 }
 
 //count how many checkboxes are selected
-function count_checkboxes()
+function countCheckboxes()
 {
   var checkboxes = document.getElementsByClassName("checkbox"); 
   var numChecked = 0;
@@ -49,7 +49,7 @@ function count_checkboxes()
   return numChecked;
 }
 
-function check_for_two_assignments_selected()
+function checkForTwoAssignmentsSelected()
 {
   var form = document.getElementById("swapping-form");
 
@@ -57,15 +57,15 @@ function check_for_two_assignments_selected()
 
   if(form != null)
   {
-   form.addEventListener("submit", check_valid_form)
+   form.addEventListener("submit", checkValidForm)
   }
 
   var checkboxes = document.getElementsByClassName("checkbox");
 
   for(let checkbox of checkboxes)
   {
-    checkbox.addEventListener("change", submitable_form)
+    checkbox.addEventListener("change", submitableForm)
   }
 }
 
-window.onload = check_for_two_assignments_selected
+window.onload = checkForTwoAssignmentsSelected
