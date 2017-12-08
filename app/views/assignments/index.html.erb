@@ -48,16 +48,12 @@
           </td>
         <% end %>
       </tr>
-    <% end %>
-    <tr>
-      <td>
-        <% if can_create_weeks? %>
-          <div class="create_week">
-            <%= link_to "Add Week", new_office_week_path(current_office) %>
-          </div>
-        <% end %>
-      </td>
-    </tr>
+    <% end %> 
   </tbody>
 </table>
 
+<% if can_create_weeks? %>  
+  <div class="create_week">
+    <%= link_to "Add Week", new_office_week_path(current_office), class: "btn btn-dark" %>
+  </div>
+<% end %> 
