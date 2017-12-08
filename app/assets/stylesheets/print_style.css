@@ -10,7 +10,7 @@
     background-color: #000 !important;
   }
 
-  .edit_weeks, .create_week, #site_navbar
+  .edit_weeks, .create_week, #site_navbar, .swap-btn
   {
     visibility: hidden;
     display: none;
