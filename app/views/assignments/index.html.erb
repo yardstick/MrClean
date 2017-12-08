@@ -2,21 +2,20 @@
 
 <h1><%= @current_office.name %> Kitchen Schedule</h1>
 
-
 <table class="table table-sm table-borderless" id="assignments_table">
   <thead class="thead-dark">
     <tr>
-      <th class="table_header">
+      <th class="table-header">
         Dates
       </th>
-      <th class="table_header">
+      <th class="table-header">
         Employees
       </th>
 
       <% (current_office.num_assignments_per_week - 1).times do %>
         <th class="table_header"></th>
       <% end %>
-
+  
       <% if can_edit_weeks? %>
         <th class="edit_weeks"></th>
       <% end %>
@@ -57,3 +56,4 @@
     <%= link_to "Add Week", new_office_week_path(current_office), class: "btn btn-dark" %>
   </div>
 <% end %> 
+<%= link_to "Edit Schedule", office_assignment_swap_index_path, class: "btn btn-dark swap-btn" %>

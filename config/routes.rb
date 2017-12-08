@@ -5,12 +5,8 @@ Rails.application.routes.draw do
     resources :employees
     resources :assignments
     resources :weeks
+    resources :assignment_swap, only:[:index, :create]
   end
-  #resources :employees
-  #resources :assignments
-  #resources :weeks
 
   root to: 'offices#index'
-
-
 end
