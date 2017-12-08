@@ -1,4 +1,4 @@
-class AssignmentSwapper
+class SwapsAssignments
   def call(assignment_ids)
     assignment1 = Assignment.find(assignment_ids.first)
     assignment2 = Assignment.find(assignment_ids.second)

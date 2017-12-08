@@ -1,3 +1,5 @@
+<% javascript_include_tag("assignment_swap/validateTwoAssignmentsSwapping") %>
+
 <h1><%= current_office.name %> Kitchen Schedule</h1>
 
 <%= form_for(:assignments, html: { id: "swapping_form" }) do |form|%>
@@ -26,7 +28,7 @@
         <% week_assignments = week.assignments.order(:created_at) %>
         <% week_assignments.each do |assignment| %>
           <td>
-            <%= form.check_box :assignment_id, { multiple: true }, assignment.id, false %>
+            <%= form.check_box :assignment_id, { multiple: true, class: "checkbox" }, assignment.id, false %>
             <%= form.label :assignment, assignment.employee.first_name %>
           </td>
         <% end %>

@@ -5,7 +5,7 @@ class AssignmentSwapController < ApplicationController
   end
 
   def create
-    AssignmentSwapper.new.call(params[:assignments][:assignment_id]) unless less_than_two_assignments_selected?(params)
+    SwapsAssignments.new.call(params[:assignments][:assignment_id]) unless less_than_two_assignments_selected?(params)
 
     redirect_to(action: "index")
   end
