@@ -2,33 +2,33 @@
 //checks if the form can be submitted
 function check_valid_form(event)
 {
-  var num_checked = count_checkboxes();
-  error_div = document.getElementById("form_error_div");
+  var numChecked = count_checkboxes();
+  errorDiv = document.getElementById("form-error-div");
 
-  if(num_checked != 2)
+  if(numChecked != 2)
   {
     event.preventDefault();
 
-    error_div.innerHTML = "You need to select at least and only two people to switch!";
+    errorDiv.innerHTML = "You need to select at least and only two people to switch!";
   }
   else
   {
-    error_div.innerHTML = "";
+    errorDiv.innerHTML = "";
   }
 }
 
 //checks if the submit button should be enabled
 function submitable_form()
 {
-  var num_checked = count_checkboxes();
+  var numChecked = count_checkboxes();
 
-  if(num_checked == 2)
+  if(numChecked == 2)
   {
-    document.getElementById("submit_btn").disabled = false;
+    document.getElementById("submit-btn").disabled = false;
   }
   else
   {
-    document.getElementById("submit_btn").disabled = true;
+    document.getElementById("submit-btn").disabled = true;
   }
 }
 
@@ -36,24 +36,24 @@ function submitable_form()
 function count_checkboxes()
 {
   var checkboxes = document.getElementsByClassName("checkbox"); 
-  var num_checked = 0;
+  var numChecked = 0;
 
   for(let checkbox of checkboxes)
   {
     if(checkbox.checked == true)
     {
-      num_checked++;
+      numChecked++;
     }
   }
 
-  return num_checked;
+  return numChecked;
 }
 
-function add_events()
+function check_for_two_assignments_selected()
 {
-  var form = document.getElementById("swapping_form");
+  var form = document.getElementById("swapping-form");
 
-  document.getElementById("submit_btn").disabled = true;
+  document.getElementById("submit-btn").disabled = true;
 
   if(form != null)
   {
@@ -68,4 +68,4 @@ function add_events()
   }
 }
 
-window.onload = function(){ add_events(); }
+window.onload = check_for_two_assignments_selected
