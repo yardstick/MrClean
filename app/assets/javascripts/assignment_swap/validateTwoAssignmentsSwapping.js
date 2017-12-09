@@ -35,12 +35,13 @@ function submitableForm()
 //count how many checkboxes are selected
 function countCheckboxes()
 {
-  var checkboxes = document.getElementsByClassName("checkbox"); 
+  var checkboxes = document.getElementsByClassName("checkbox");
   var numChecked = 0;
 
-  for(let checkbox of checkboxes)
+  var i = 0;
+  for(i = 0; i < checkboxes.length; i++)
   {
-    if(checkbox.checked == true)
+    if(checkboxes[i].checked == true)
     {
       numChecked++;
     }
@@ -62,9 +63,10 @@ function checkForTwoAssignmentsSelected()
 
   var checkboxes = document.getElementsByClassName("checkbox");
 
-  for(let checkbox of checkboxes)
+  var i = 0;
+  for(i = 0; i < checkboxes.length; i++)
   {
-    checkbox.addEventListener("change", submitableForm)
+    checkboxes[i].addEventListener("change", submitableForm)
   }
 }
 
