@@ -51,3 +51,5 @@ gem 'sendgrid-ruby'
 gem 'devise'
 
 gem 'bootstrap', '~> 4.0.0.beta2'
+
+gem 'jquery-rails'

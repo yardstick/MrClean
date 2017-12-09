@@ -35,13 +35,12 @@ function submitableForm()
 //count how many checkboxes are selected
 function countCheckboxes()
 {
-  var checkboxes = document.getElementsByClassName("checkbox");
+  var checkboxes = document.getElementsByClassName("checkbox"); 
   var numChecked = 0;
 
-  var i = 0;
-  for(i = 0; i < checkboxes.length; i++)
+  for(let checkbox of checkboxes)
   {
-    if(checkboxes[i].checked == true)
+    if(checkbox.checked == true)
     {
       numChecked++;
     }
@@ -63,11 +62,10 @@ function checkForTwoAssignmentsSelected()
 
   var checkboxes = document.getElementsByClassName("checkbox");
 
-  var i = 0;
-  for(i = 0; i < checkboxes.length; i++)
+  for(let checkbox of checkboxes)
   {
-    checkboxes[i].addEventListener("change", submitableForm)
+    checkbox.addEventListener("change", submitableForm)
   }
 }
 
-window.onload = checkForTwoAssignmentsSelected
+$(document).on("turbolinks:load", checkForTwoAssignmentsSelected);
