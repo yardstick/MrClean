@@ -38,7 +38,8 @@ function countCheckboxes()
   var checkboxes = document.getElementsByClassName("checkbox"); 
   var numChecked = 0;
 
-  for(let checkbox of checkboxes)
+  var i = 0
+  for(i = 0; i < checkboxes.length; i++)
   {
     if(checkbox.checked == true)
     {
@@ -62,7 +63,8 @@ function checkForTwoAssignmentsSelected()
 
   var checkboxes = document.getElementsByClassName("checkbox");
 
-  for(let checkbox of checkboxes)
+  var i = 0
+  for(i = 0; i < checkboxes.length; i++)
   {
     checkbox.addEventListener("change", submitableForm)
   }
