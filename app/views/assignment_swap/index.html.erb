@@ -23,15 +23,15 @@
         <td>
           <%= print_date(week) %>
         </td>
-    
+
         <% week_assignments = week.assignments.order(:created_at) %>
         <% week_assignments.each do |assignment| %>
           <td>
             <%= form.check_box :assignment_id, { multiple: true, class: "checkbox" }, assignment.id, false %>
-            <%= form.label :assignment, assignment.employee.first_name %>
+            <%= form.label :assignment, assignment.employee.display_name %>
           </td>
         <% end %>
-    
+
         <% if !week.fully_assigned? %>
           <% (2 - week_assignments.count).times do %>
             <td><b>EMPTY</b></td>
